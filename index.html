@@ -3,82 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pop Quiz!</title>
+    <title>Cat Quiz!</title>
+    <style>
+        body {
+            background-color: #f0f8ff; /* AliceBlue background */
+            font-family: Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .quiz-container {
+            background-color: #ffffff;
+            border: 2px solid #6a5acd; /* SlateBlue border */
+            border-radius: 15px;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+            padding: 20px;
+            width: 90%;
+            max-width: 650px;
+        }
+        caption {
+            font-size: 2em;
+            font-weight: bold;
+            color: #483d8b; /* DarkSlateBlue */
+            padding-bottom: 20px;
+        }
+        textarea {
+            width: 100%;
+            font-size: 1.1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            box-sizing: border-box; /* Ensures padding doesn't affect width */
+        }
+        .feedback-section, .response-section {
+            text-align: center;
+            margin-top: 15px;
+        }
+        strong {
+            font-size: 1.2em;
+            color: #483d8b;
+        }
+        input[type="text"] {
+            width: 70%;
+            font-size: 1em;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        select {
+            font-size: 1em;
+            padding: 5px;
+            margin: 0 10px;
+        }
+        input[type="button"] {
+            background-color: #6a5acd; /* SlateBlue */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+        input[type="button"]:hover {
+            background-color: #483d8b; /* DarkSlateBlue */
+        }
+        .footer-nav {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-<div align="left">
 
-<table border="0" cellspacing="0" cellpadding="0" width="100%">
-  <tr>
-    <td width="50%"><form method="POST" name="instantquiz">
-      <table border="0" width="100%" cellspacing="0" cellpadding="0">
-        <caption><strong>JavaScript Kit Pop Quiz</strong></caption>
-        <tr>
-          <td width="100%"><div align="center"><center><p><textarea rows="10" name="thequestion"
-          cols="69" wrap="virtual"></textarea></td>
-        </tr>
-        <tr align="center">
-          <td width="50%"><div align="center"><center><p><strong>Solution: </strong><input
-          type="text" name="thesolution" size="35"></td>
-        </tr>
-        <tr align="center">
-          <td width="100%"><div align="center"><center><p><strong>Your response:</strong> <select
-          name="theresponse" size="1" onChange="responses()">
-            <option value="-----">----</option>
-            <option value="a">a</option>
-            <option value="b">b</option>
-            <option value="c">c</option>
-            <option value="d">d</option>
-          </select> <input type="button" value="&lt;&lt;Back" name="B1"
-          onClick="if (whichone&gt;1){whichone--;generatequestions()}"> <input type="button"
-          value="Next&gt;&gt;" name="B2"
-          onClick="if (whichone&lt;=total){whichone++;generatequestions()}"><br>
-          <small><a href="#" onClick="whichone=1;generatequestions();return false">Start Over</a> </small><input
-          type="checkbox" name="cmode" value="ON"><small>Cheat Mode</small><p align="center"><font face="arial" size="-2">This free quiz script provided by</font><br> <font face="arial, helvetica" size="-2"><a href="http://javascriptkit.com">JavaScript Kit</a></font></p></td>
-        </tr>
-      </table>
+<div class="quiz-container">
+    <form name="instantquiz">
+        <table border="0" width="100%" cellspacing="0" cellpadding="0">
+            <caption>Cat Quiz!</caption>
+            <tr>
+                <td><textarea rows="8" name="thequestion" cols="60" wrap="virtual" readonly></textarea></td>
+            </tr>
+            <tr class="feedback-section">
+                <td>
+                    <strong>Feedback: </strong><input type="text" name="thesolution" size="40" readonly>
+                </td>
+            </tr>
+            <tr class="response-section">
+                <td>
+                    <strong>Your Answer:</strong>
+                    <select name="theresponse" size="1" onChange="responses()">
+                        <option value="-----">----</option>
+                        <option value="a">a</option>
+                        <option value="b">b</option>
+                        <option value="c">c</option>
+                        <option value="d">d</option>
+                    </select>
+                </td>
+            </tr>
+            <tr class="footer-nav">
+                <td>
+                    <input type="button" value="Previous" name="B1" onClick="if (whichone>1){whichone--;generatequestions()}">
+                    <input type="button" value="Next" name="B2" onClick="if (whichone<=total){whichone++;generatequestions()}">
+                    <br><br>
+                    <a href="#" onClick="whichone=1;generatequestions();return false">Start Over</a>
+                </td>
+            </tr>
+        </table>
     </form>
-    </td>
-  </tr>
-</table>
-
 </div>
 
-<script src="popsolution.js">
+<script src="popsolution.js"></script>
+<script>
+var whichone = 1;
+var tempmn = document.instantquiz.thequestion;
 
-/*
-Instant-grading multiple choice quiz-
-By JavaScript Kit (javascriptkit.com)
-Over 200+ free scripts here!
-*/
+function generatequestions() {
+    document.instantquiz.theresponse.selectedIndex = 0;
+    document.instantquiz.thesolution.value = '';
 
-</script>
-<script language="JavaScript1.1">
-var whichone=1
-var tempmn=document.instantquiz.thequestion
-function generatequestions(){
-document.instantquiz.theresponse.selectedIndex=0
-if (!document.instantquiz.cmode.checked||whichone>=total+1||whichone<=0)
-document.instantquiz.thesolution.value=''
-if (whichone>=total+1)
-tempmn.value="End of quiz"
-else{
-tempmn.value=whichone+")"+question[whichone]+"\n\n"+"a)"+eval('choice'+whichone+'[1]')+"\n"+"b)"+eval('choice'+whichone+'[2]')+"\n"+"c)"+eval('choice'+whichone+'[3]')+"\n"+"d)"+eval('choice'+whichone+'[4]')
-if (document.instantquiz.cmode.checked)
-document.instantquiz.thesolution.value=solution[whichone]
-}
+    if (whichone > total) {
+        tempmn.value = "You've reached the end of the quiz! Thanks for playing! 🐾";
+    } else {
+        tempmn.value = whichone + ") " + question[whichone] + "\n\n" +
+                       "a) " + choice[whichone][1] + "\n" +
+                       "b) " + choice[whichone][2] + "\n" +
+                       "c) " + choice[whichone][3] + "\n" +
+                       "d) " + choice[whichone][4];
+    }
 }
 
-function responses(){
-var temp2=document.instantquiz.theresponse
-var temp3=temp2.options[temp2.selectedIndex].text
-if (temp3!=solution[whichone]&&temp2.selectedIndex!=0)
-document.instantquiz.thesolution.value="Sorry, the correct answer is "+solution[whichone]
-else if(temp2.selectedIndex!=0)
-document.instantquiz.thesolution.value=compliments[Math.round(Math.random()*compliments.length-1)]
+function responses() {
+    var temp2 = document.instantquiz.theresponse;
+    var userResponse = temp2.options[temp2.selectedIndex].text;
+
+    if (temp2.selectedIndex !== 0) {
+        if (userResponse === solution[whichone]) {
+            document.instantquiz.thesolution.value = compliments[Math.floor(Math.random() * compliments.length)];
+        } else {
+            document.instantquiz.thesolution.value = "Not quite! The correct answer is '" + solution[whichone] + "'.";
+        }
+    }
 }
 
-generatequestions()
+// Initial call to load the first question
+window.onload = generatequestions;
 </script>
 </body>
 </html>

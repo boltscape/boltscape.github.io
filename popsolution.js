@@ -1,58 +1,70 @@
-//change 5 to the total number of questions
-var total=5
-var question=new Array()
-for (i=1;i<=total+1;i++){
-temp="choice"+i+"=new Array()"
-eval(temp)
+// Set the total number of questions
+var total = 7;
+var question = new Array();
+
+// Use a single choice array for simplicity
+var choice = new Array();
+for (var i = 1; i <= total; i++) {
+    choice[i] = new Array();
 }
-var solution=new Array()
 
-/*Below lists the phrases that will be randomly displayed if the user correctly answers the question. You may extend or shorten this list as desired*/
-var compliments=new Array()
-compliments[0]="Excellent!"
-compliments[1]="Wow, you're really rocking!"
-compliments[2]="You must have studied hard. Good job!"
-compliments[3]="Right on."
-compliments[4]="Correct!"
-compliments[5]="Great Job!"
-compliments[6]="Good work!"
+var solution = new Array();
 
+/* Phrases randomly displayed for a correct answer */
+var compliments = new Array();
+compliments[0] = "Purr-fect!";
+compliments[1] = "You're the cat's meow!";
+compliments[2] = "Great job, cool cat!";
+compliments[3] = "You've got to be kitten me, that's right!";
+compliments[4] = "Claw-some answer!";
 
-/*Below lists the questions, its choices, and finally, the solution to each question. Folow the exact format below when editing the questions. You may have as many questions as needed. Check doc at http://javascriptkit.com/script/script2/comboquiz.htm for more info
-*/
+/* Questions, choices, and solutions */
 
-question[1]="What is the difference between a jungle and a rain forest?"
-choice1[1]="No difference. Simply two different ways in referring to the same thing."
-choice1[2]="A jungle in general receives less rain than a rain forest."
-choice1[3]="A jungle refers to the thickest area of a rain forest"
-choice1[4]="A jungle and a rain forest each contain their own group of distinct plants and animals."
+question[1] = "A group of cats is called a...";
+choice[1][1] = "Pack";
+choice[1][2] = "Herd";
+choice[1][3] = "Clowder";
+choice[1][4] = "School";
+solution[1] = "c";
 
-question[2]="What is the world's most common religion?"
-choice2[1]="Christianity"
-choice2[2]="Buddhism"
-choice2[3]="Hinduism"
-choice2[4]="Muslim"
+question[2] = "How many whiskers does the average cat have on each side of its face?";
+choice[2][1] = "6";
+choice[2][2] = "12";
+choice[2][3] = "18";
+choice[2][4] = "24";
+solution[2] = "b";
 
-question[3]="Which city ranks as the world\'s most populous city?"
-choice3[1]="New York (US)"
-choice3[2]="Mexico City (Mexico)"
-choice3[3]="Tokyo (Japan)"
-choice3[4]="Shanghai (China)"
+question[3] = "What is a cat's most powerful sense?";
+choice[3][1] = "Sight";
+choice[3][2] = "Hearing";
+choice[3][3] = "Taste";
+choice[3][4] = "Smell";
+solution[3] = "d";
 
-question[4]="According to statistics, what kind of sites on the net are the most popular?"
-choice4[1]="Adult content sites"
-choice4[2]="Portal sites"
-choice4[3]="Chat sites"
-choice4[4]="News sites"
+question[4] = "Which of these common human foods is toxic to cats?";
+choice[4][1] = "Chicken";
+choice[4][2] = "Chocolate";
+choice[4][3] = "Tuna";
+choice[4][4] = "Cheese";
+solution[4] = "b";
 
-question[5]="As of June 1998, how much is Microsoft Chairman Bill Gates's net worth?"
-choice5[1]="10 million US"
-choice5[2]="10 billion US"
-choice5[3]="35 billion US"
-choice5[4]="50 billion US"
+question[5] = "Cats can make over how many different sounds?";
+choice[5][1] = "10";
+choice[5][2] = "50";
+choice[5][3] = "100";
+choice[5][4] = "200";
+solution[5] = "c";
 
-solution[1]="c"
-solution[2]="a"
-solution[3]="b"
-solution[4]="b"
-solution[5]="d"
+question[6] = "What is the technical term for a 'hairball'?";
+choice[6][1] = "Trichobezoar";
+choice[6][2] = "Furballoma";
+choice[6][3] = "Cattail";
+choice[6][4] = "Gagglefluff";
+solution[6] = "a";
+
+question[7] = "A cat cannot taste which of the following flavors?";
+choice[7][1] = "Salty";
+choice[7][2] = "Sour";
+choice[7][3] = "Sweetness";
+choice[7][4] = "Bitter";
+solution[7] = "c";
